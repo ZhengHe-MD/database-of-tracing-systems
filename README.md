@@ -2,9 +2,9 @@
 
 ## 项目背景
 
-[AP](http://www.cs.cmu.edu/~pavlo/) 在 2014 年建立了网站 [dbdb.io](https://dbdb.io/)，即 Database of Databases，从一些固定的设计维度来分析市面上琳琅满目的数据库系统。受它启发，我们是否也可以找到一些相对固定的设计维度，来分析市面上的调用链追踪系统，从而获得更加系统的理解？
+[AP](http://www.cs.cmu.edu/~pavlo/) 在 2014 年建立了网站 [dbdb.io](https://dbdb.io/)，即 Database of Databases，从一些固定的设计维度来分析市面上琳琅满目的数据库系统。受它启发，我们是否也可以找到一些相对固定的设计维度，来分析市面上的调用链追踪系统，从而获得更加系统化的理解？
 
-恰好在调研的过程中，在多方引荐下阅读了 [So, you want to trace your distributed system?](https://www.pdl.cmu.edu/PDL-FTP/SelfStar/CMU-PDL-14-102.pdf) 这篇论文，里头介绍了一些四个重要的设计维度：**因果关系**、**追踪方式**、**采样策略** 以及 **数据可视化** (详情可参考我的[分享: 调用链追踪的设计决定及伴鱼的实践经验](./shares/design-decisions-of-tracing-systems-and-practical-experiences-in-palfish.md))，我们不妨就以它为起点，来尝试解构市面上的调用链追踪系统。
+恰好在调研的过程中，在多方引荐下阅读了 [So, you want to trace your distributed system?](https://www.pdl.cmu.edu/PDL-FTP/SelfStar/CMU-PDL-14-102.pdf) 这篇论文，文章中介绍了四个重要的设计维度：**因果关系**、**追踪方式**、**采样策略** 以及 **数据可视化** (详情可参考我的[分享: 调用链追踪的设计决定及伴鱼的实践经验](./shares/design-decisions-of-tracing-systems-and-practical-experiences-in-palfish.md))，我们不妨就以它为起点，来尝试解构市面上的调用链追踪系统。
 
 ## 案例分析
 
@@ -37,7 +37,7 @@
 
 ### 内容
 
-任意开发者都可以从至少 3 个角度贡献你的见解或调研成果：
+本项目中的任意文档都可以修改。此外，任意开发者都至少可以从以下 3 个角度贡献你的见解或调研成果：
 
 1. 维度
 2. 使用场景
