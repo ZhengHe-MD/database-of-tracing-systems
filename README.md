@@ -24,7 +24,7 @@
 ### 设计维度
 
 * [因果关系](./dimensions/design/causality.md)
-* [追踪方式](./dimensions/design/tracking.md)
+* [元数据结构](./dimensions/design/metadata.md)
 * [采样策略](./dimensions/design/sampling.md)
 * [数据可视化](./dimensions/design/visualization.md)
 
