@@ -65,7 +65,7 @@ Causal relationships between Spans in a single Trace
 
 其中 Span 与 Span 之间存在两种因果关系，ChildOf 和 FollowsFrom。ChildOf 关系中，父节点依赖于子节点执行的结果；FollowsFrom 关系中，父节点不依赖于子节点执行的结果，但与之存在因果关系。
 
-上述数据结构能够关联同一个请求中的不同进程，是提交者视角还是触发者视角则取决于 Jaeger 的接入方，选择触发者视角对接入方不存在额外的成本，而提交者视角则需要接入方投入额外的精力做定制化开发。
+上述数据结构能够关联同一个请求中的不同进程，是提交者视角还是触发者视角则取决于 Jaeger 的接入方，选择触发者视角对接入方不存在额外的成本，而选择提交者视角则需要接入方投入额外的精力做定制化开发。
 
 ## 元数据结构
 
@@ -100,7 +100,7 @@ type SpanContext struct {
 }
 ```
 
-利用 traceID 可以确认当前 span 的归属关系；利用 spanID 和 parentID 可以建立上下游进程的父子关系。通常 baggage 中的数据量不会变化，整体来看 Jaeger 的元数据结构属于动态定长类别。
+利用 traceID 可以确认当前 span 的归属关系；利用 spanID 和 parentID 可以建立上下游进程的父子关系。通常 baggage 中的数据量不会变化。综合考虑：Jaeger 的元数据结构属于动态定长。
 
 ## 采样策略
 
