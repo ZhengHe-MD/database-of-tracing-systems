@@ -9,7 +9,7 @@
 | 技术文档 | https://dl.acm.org/doi/pdf/10.1145/3132747.3132749 |
 | 开发主体 | Facebook                                           |
 | 来源国家 | 美国                                               |
-| 开始年份 | 2015*                                              |
+| 开始年份 | 2015\*                                              |
 | 结束年份 | -                                                  |
 | 使用语言 | -                                                  |
 | 支持语言 | C/C++/Python/Java/PHP                              |
@@ -25,7 +25,7 @@ Canopy 是 Facebook 内部使用的端到端性能追踪一体化平台，该平
 
 当工程师遇到一些问题时，比如网页加载变慢、性能优化改动上线是否生效等等，常常需要通过一次或多次分析线上调用链数据，来验证自己的猜想或假设，如下图所示：
 
-![analysis-loop](./Canopy/analysis-loop.png)
+![analysis-loop](./analysis-loop.png)
 
 Canopy 支持工程师通过使用 Jupyter Notebook 编写简单的 Python 脚本，处理线上采集的调用链数据，分析并得到结果。在 Canopy 论文末尾介绍了若干 Facebook 内部的案例分析：
 
@@ -42,7 +42,7 @@ Canopy 支持工程师通过使用 Jupyter Notebook 编写简单的 Python 脚�
 
 Canopy 的调用链数据模型由五部分组成：Execution Unit、Block、Point、Edge 以及 Annotations，如下图所示：
 
-![trace-model](./Canopy/trace-model.png)
+![trace-model](./trace-model.png)
 
 Execution Unit 是具备本地时钟的运行单元，通常表现为一个线程；Block 是 Execution Unit 一段执行区间；Point 是 Block 中的任意时刻；Edge 连接两个 Point，表达因果关系，这里即可以同步也可以是异步关系；Annotations 可以标记上述的任意元素，用于记录辅助信息。
 
@@ -72,7 +72,7 @@ struct Event {
 
 对于 Facebook 的业务体量来说，追踪所有请求并不现实，因此 Canopy 在设计上只为追踪一小部分请求，如下图所示：
 
-![sampling](./Canopy/sampling.png)
+![sampling](./sampling.png)
 
 在开启追踪前，埋点 SDK 必须先从分布式令牌桶 (distributed token bucket) 中获取一个令牌，如果获取失败则不采集。Canopy 的工程师会为不同的租户设定不同的限流阈值，其默认值为 5。但限流策略的弊端在于请求量小的请求容易被忽视，为此 Canopy 为每个租户额外增加了自定义采集配置的功能，让租户们能够细粒度地控制自己的令牌分发逻辑，但前提是不超过全局配置的限流阈值。
 
@@ -84,7 +84,7 @@ struct Event {
 
 Canopy 中许多可视化组件针对特定场景，解答复杂问题的数据聚合分析设计，不属于本文讨论范围。在论文中提到 Canopy 支持用多种可视化方案来分析不同端的调用链信息，唯一具体提到的例子是利用火焰图分析调用链性能瓶颈，如下图所示：
 
-![flame-graph](./Canopy/flame-graph.png)
+![flame-graph](./flame-graph.png)
 
 相信后端服务也会有类似甘特图或调用图的可视化方式支持，但鉴于论文中未具体介绍，这里就不妄议了。
 
@@ -92,7 +92,7 @@ Canopy 中许多可视化组件针对特定场景，解答复杂问题的数据�
 
 Canopy 的 tailer 模块负责接收、处理和持久化调用链数据，它既要处理所有数据，还要保障数据处理的时效性，其结构如下图所示：
 
-![tailer](./Canopy/tailer.png)
+![tailer](./tailer.png)
 
 **事件路由 (Routing Events)**：埋点 SDK 会将事件数据直接上报到消息中间件 Scribe 中，后者将所有事件按 TraceID 分片，保证所有隶属同一个调用链的事件数据进入同一个 tailer 分片中。(①) fetcher 池中的多个 fetcher 线程会不断轮询 Scribe、处理事件数据。首先这些事件数据会被立即写入 HBase (②)，然后被插入到本地缓存中 (③)，后者将同样按照 TraceID 将事件数据分组，所有数据都将被设置 15 分钟的过期时间，如果缓存大小到达上限，则将最早的数据清出，即 LRU，为了防止同一个调用链的事件数据又重新进入缓存，tailer 中还维持额外的 TraceID 缓存，用于存储最近 5 小时出现过的 TraceID。
 

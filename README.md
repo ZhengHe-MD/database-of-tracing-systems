@@ -8,8 +8,8 @@
 
 ## 案例分析
 
-* [Jaeger](./Jaeger.md)
-* [Canopy](./Canopy.md)
+* [Jaeger](./Jaeger/README.md)
+* [Canopy](./Canopy/README.md)
 
 ## 分析维度
 
@@ -24,9 +24,11 @@
 ### 设计维度
 
 * [因果关系](./dimensions/design/causality.md)
+* [调用链数据模型](./dimensions/design/tracing-model.md)
 * [元数据结构](./dimensions/design/metadata.md)
 * [采样策略](./dimensions/design/sampling.md)
 * [数据可视化](./dimensions/design/visualization.md)
+* [可扩展性](./dimensions/design/scalability.md)
 
 ## 贡献
 
