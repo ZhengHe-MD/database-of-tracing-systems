@@ -32,3 +32,8 @@
 
 ![cct](./visualization/cct.png)
 
+## 火焰图 (Flame graph)
+
+火焰图常被用于展示单机程序调用栈耗时信息，如 Go 中的 pprof。它与调用树的结构类似，常被用于展示多个请求的聚合信息，但展示形式不同，能更直观地展示各个组件的耗时信息，举例如下：
+
+![flame-graph](./visualization/flame-graph.png)
