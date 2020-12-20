@@ -13,7 +13,7 @@
 
 ## 分析维度
 
-针对每个现存的解决方案，我们通过 **事实维度** 和 **设计维度** 来分别考量。
+针对每个现存的解决方案，我们通过「**事实维度**」 和 「**设计维度**」 来分别考量。
 
 ### 事实维度
 
@@ -23,12 +23,14 @@
 
 ### 设计维度
 
-* [因果关系](./dimensions/design/causality/README.md)
 * [调用链数据模型](./dimensions/design/tracing-model/README.md)
 * [元数据结构](./dimensions/design/metadata/README.md)
+* [因果关系](./dimensions/design/causality/README.md)
 * [采样策略](./dimensions/design/sampling/README.md)
 * [数据可视化](./dimensions/design/visualization/README.md)
 * [可扩展性](./dimensions/design/scalability/README.md)
+
+由于各个维度之间并不正交，而是存在一定的关联关系，每个案例分析根据实际情况有选择性地介绍部分设计维度即可。
 
 ## 贡献
 
