@@ -17,18 +17,18 @@
 
 ### 事实维度
 
-* [基本信息](./dimensions/facts/basics.md)
-* [项目历史](./dimensions/facts/history.md)
-* [使用场景](./dimensions/facts/use-cases.md)
+* [基本信息](./dimensions/facts/basics/README.md)
+* [项目历史](./dimensions/facts/history/README.md)
+* [使用场景](./dimensions/facts/use-cases/README.md)
 
 ### 设计维度
 
-* [因果关系](./dimensions/design/causality.md)
-* [调用链数据模型](./dimensions/design/tracing-model.md)
-* [元数据结构](./dimensions/design/metadata.md)
-* [采样策略](./dimensions/design/sampling.md)
-* [数据可视化](./dimensions/design/visualization.md)
-* [可扩展性](./dimensions/design/scalability.md)
+* [因果关系](./dimensions/design/causality/README.md)
+* [调用链数据模型](./dimensions/design/tracing-model/README.md)
+* [元数据结构](./dimensions/design/metadata/README.md)
+* [采样策略](./dimensions/design/sampling/README.md)
+* [数据可视化](./dimensions/design/visualization/README.md)
+* [可扩展性](./dimensions/design/scalability/README.md)
 
 ## 贡献
 
