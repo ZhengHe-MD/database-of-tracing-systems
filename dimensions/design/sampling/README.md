@@ -13,7 +13,7 @@
 
 它们的示意图如下所示：
 
-![sampling-methods](./sampling/methods.png)
+![sampling-methods](./methods.png)
 
 ## 头部连贯采样
 

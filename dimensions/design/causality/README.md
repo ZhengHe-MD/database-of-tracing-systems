@@ -18,7 +18,7 @@
 
 第一个决定标准通常比较简单：能采集的就采集；关于第二个决定，调用链追踪系统则可能根据使用场景的不同而做出不同的选择，我们可以从两个角度出发分析：提交者角度和触发者角度。
 
-![submitter-and-trigger](./causality/submitter-and-trigger.png)
+![submitter-and-trigger](./submitter-and-trigger.png)
 
 ## 提交者角度 (Submitter-preserving)
 
