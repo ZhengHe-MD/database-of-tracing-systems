@@ -33,11 +33,11 @@ Jaeger 在官网上介绍自己的主要功能如下：
 
 重建调用链关系需要在进程间传播元数据，因此分布式上下文传播其实是实现调用链追踪数据建模的基础，我们通常不会使用它来传播非调用链追踪相关的数据，如 uid、did 等等。这些数据一般会通过微服务治理框架来传播。后面的分布式事务监控、根因分析、服务依赖分析、性能/时延优化，主要是通过采集侧收集上来的调用链数据及服务 (service)、操作 (operation) 的依赖关系，分析系统行为。
 
-## 因果关系
+## 调用链数据模型
 
-> 用户决定
+> Span Model
 
-Jaeger 中调用链数据模型遵守了 opentracing 标准，其核心数据结构如下图所示：
+Jaeger 中调用链数据模型遵守了 opentracing 标准，使用的是典型的 Span Model，其核心数据结构如下图所示：
 
 ![data-model](./data-model.png)
 
@@ -65,7 +65,11 @@ Causal relationships between Spans in a single Trace
 
 其中 Span 与 Span 之间存在两种因果关系，ChildOf 和 FollowsFrom。ChildOf 关系中，父节点依赖于子节点执行的结果；FollowsFrom 关系中，父节点不依赖于子节点执行的结果，但与之存在因果关系。
 
-上述数据结构能够关联同一个请求中的不同进程，是提交者视角还是触发者视角则取决于 Jaeger 的接入方，选择触发者视角对接入方不存在额外的成本，而选择提交者视角则需要接入方投入额外的精力做定制化开发。
+## 因果关系
+
+> 用户决定，触发者视角为主
+
+Jaeger 采用的调用链数据模型完全能够关联同一个请求中的不同进程，是提交者视角还是触发者视角则取决于 Jaeger 的接入方，选择触发者视角对接入方不存在额外的成本，而选择提交者视角则需要接入方投入额外的精力做定制化开发。因此在绝大多数情况下使用的是触发者视角。
 
 ## 元数据结构
 
@@ -114,7 +118,7 @@ type SpanContext struct {
 
 除了在 sdk 初始化时直接写死采样配置外，Jaeger 还支持远程动态调整采样方式，但调整的选择范围仍然必须为上面三种之一。为了防止一些调用量小的请求因为出现概率低而无法获得调用链信息，Jaeger 团队也提出了适应性采样 (Adaptive Sampling) ，但这个提议从 2017 年至今仍然未有推进。
 
-无论是上述哪种方式，是否采样这一决定都是在请求进入系统之时决定，因此结论是：目前 Jaeger 支持头部连贯采样。
+无论是上述哪种方式，是否采样这一决定都是在请求进入系统之时决定，因此结论是：目前 Jaeger 支持头部连贯采样。值得一提的是，Jaeger 团队也在讨论[引入尾部连贯采样的可能性](https://github.com/jaegertracing/jaeger/issues/425)，但尚未有结论。
 
 ## 数据可视化
 
@@ -137,6 +141,18 @@ jaeger-ui 项目提供了丰富的调用链数据可视化支持，包括针对�
 ![call-graph](./call-graph.png)
 
 同时还可以聚焦到某个节点，让调用图只显示与该节点相关的服务，即焦点图 (focus graph)。
+
+## 可扩展性
+
+Jaeger 有两种部署架构选择，分别如下面两张图所示：
+
+![jaeger-architecture-1](./jaeger-architecture-1.png)
+
+
+
+![jaeger-architecture-2](./jaeger-architecture-2.png)
+
+二者大致结构相同，主要区别在于 jaeger-collector 与 DB 之间加了 Kafka 做缓冲，解决峰值流量过载问题。整个 Jaeger 后端不存在单点故障，Jaeger-collector、Kafka、DB (Cassandra 和 ElasticSearch) 都支持横向扩展。
 
 ## 参考资料
 
