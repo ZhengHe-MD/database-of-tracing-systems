@@ -18,12 +18,12 @@
 
 ### 设计维度
 
+* [基本架构](/dimensions/design/architecture/README.md)
 * [调用链数据模型](./dimensions/design/tracing-model/README.md)
 * [元数据结构](./dimensions/design/metadata/README.md)
 * [因果关系](./dimensions/design/causality/README.md)
 * [采样策略](./dimensions/design/sampling/README.md)
 * [数据可视化](./dimensions/design/visualization/README.md)
-* [可扩展性](./dimensions/design/scalability/README.md)
 
 由于各个维度之间并不正交，而是存在一定的关联关系，每个案例分析根据实际情况有选择性地介绍部分设计维度即可。
 
