@@ -34,6 +34,14 @@
 
 注：按字母顺序排列
 
+## 视频
+
+* [微服务时代的调用链追踪系统设计 | InfoQ 公开课](https://www.infoq.cn/video/Kf4DaZ1C862juiMS84J8)
+
+## 文章
+
+* [调用链追踪系统的设计维度](https://zhenghe-md.github.io/blog/2020/12/20/design-dimensions-of-tracing-systems/)
+
 ## 贡献
 
 [如何贡献？](./CONTRIBUTING.md)
