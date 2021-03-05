@@ -40,7 +40,7 @@
 
 ## 文章
 
-* [调用链追踪系统在伴鱼：理论偏 (调用链追踪系统的设计维度)](https://zhenghe-md.github.io/blog/2020/12/20/design-dimensions-of-tracing-systems/)
+* [调用链追踪系统在伴鱼：理论篇 (调用链追踪系统的设计维度)](https://zhenghe-md.github.io/blog/2020/12/20/design-dimensions-of-tracing-systems/)
 * [调用链追踪系统在伴鱼：实践篇](https://zhenghe-md.github.io/blog/2021/03/04/implementing-tail-based-sampling/)
 
 ## 贡献
